@@ -30,8 +30,20 @@ class Home extends React.Component {
     this.updateState = this.updateState.bind(this)
   }
   componentDidMount() {
-
-    
+    if (!isEmpty(this.state.user)) {
+      axios
+        .get(`http://localhost:8000/api/organization/${this.state.user.organization_id}/home?token=${this.state.user.auth_token}&fpid=${this.state.parent_id}`)
+        .then(response => {
+          localStorage["fileData"] = JSON.stringify(response.data)
+          this.updateState()
+        })
+        .catch(error => {
+          if (error.response.status === 401) {
+            localStorage.clear();
+            window.location.replace("/")
+          }
+        })
+    }
   }
 
   updateState() {

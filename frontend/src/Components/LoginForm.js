@@ -1,9 +1,9 @@
 import React from 'react'
+import { Link } from "react-router-dom"
+import isEmpty from 'lodash/isEmpty'
 
-import { Link } from "react-router-dom";
 
-
-class RegisterForm extends React.Component {
+class LoginForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -13,33 +13,39 @@ class RegisterForm extends React.Component {
 
 
   handleSubmit(event) {
+    console.log("adada")
     event.preventDefault()
 
-    this.props.onSubmit(event.target)
+    if (isEmpty(event.target.emailAddress.value) || isEmpty(event.target.inputPassword.value)){
+      alert("Please Fill All Forms")
+    } else {
+      this.props.onSubmit(event.target)
+    }
+
   }
 
   render() {
     return (
       <div>
-        <form id="login-form">
+        <form id="login-form" onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email address</label>
-            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+            <input type="email" className="form-control" id="emailAddress" aria-describedby="emailHelp" placeholder="Enter email" />
             <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
           <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Password</label>
-            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+            <label htmlFor="inputPassword">Password</label>
+            <input type="password" className="form-control" id="inputPassword" placeholder="Password" />
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
-        <Link to="/register">
-          Register
+          <button type="submit" className="btn btn-primary">Login</button>
+          <Link type="button" className="btn btn-primary" to="/register">
+            Register
         </Link>
+        </form>
       </div>
     )
   }
 }
 
 
-export default RegisterForm
+export default LoginForm

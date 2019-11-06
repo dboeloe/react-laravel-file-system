@@ -131,16 +131,12 @@ class App extends React.Component {
             user: userData
           }
 
-          this.setState(newState)
-
           localStorage["appState"] = JSON.stringify(newState)
 
           $("#login-button")
             .removeAttr("disabled")
             .html("Login")
-
-          window.location.replace("/home");
-
+          this.setState(newState)
         }
       })
       .catch(error => {
@@ -159,7 +155,7 @@ class App extends React.Component {
         <Router>
           <Switch>
             <Route exact path="/">
-              <Login data={this.state}/>
+              <Login data={this.state} handleLogin={this.handleLogin}/>
             </Route>
             <Route path="/register">
               <Register data={this.state} handleRegister={this.handleRegister}/>

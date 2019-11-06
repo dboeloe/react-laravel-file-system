@@ -29,8 +29,8 @@ class RegisterForm extends React.Component {
           </div>
           <div className="form-group">
             <label htmlFor="username">Name</label>
-            <input type="text" className="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter email" />
-            <small id="usernameHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+            <input type="text" className="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter username" />
+            <small id="usernameHelp" className="form-text text-muted">Your username.</small>
           </div>
           <div className="form-group">
             <label htmlFor="inputPassword">Password</label>
